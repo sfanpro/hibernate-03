@@ -9,11 +9,12 @@ import ua.team.hibernate.entity.Instructor;
 import ua.team.hibernate.entity.InstructorDetail;
 import ua.team.hibernate.entity.Review;
 
-public class CreateCoursesAndReviewsDemo {
+public class DeleteCoursesAndReviewsDemo {
 
 	public static void main(String[] args) {
 
 		// create session factory
+
 		SessionFactory factory = new Configuration()
 				.configure("hibernate.cfg.xml")
 				.addAnnotatedClass(Instructor.class)
@@ -29,19 +30,19 @@ public class CreateCoursesAndReviewsDemo {
 			// start a transaction
 			session.beginTransaction();
 
-			// create a course
-			Course tempCourse = new Course("fasting");
+			// get the course
+			int theId = 10;
+			Course tempCourse = session.get(Course.class, theId);
 
-			// add some reviews
-			tempCourse.addReview(new Review("deep knowlage, great course ... loved it!"));
-			tempCourse.addReview(new Review("Cool course, job half done!"));
-			tempCourse.addReview(new Review("What a wise course ... loved it!"));
-
-			// save the course ... and leverage the cascade all
-			System.out.println("Saving the course");
+			// print the course
+			System.out.println("Deleting course...");
 			System.out.println(tempCourse);
+
+			// print the course reviews
 			System.out.println(tempCourse.getReviews());
-			session.save(tempCourse);
+
+			// delete the course
+			session.delete(tempCourse);
 
 			// commit transaction
 			session.getTransaction().commit();
