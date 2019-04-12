@@ -15,9 +15,8 @@ public class CreateCoursesAndReviewsDemo {
 
 		// create session factory
 		SessionFactory factory = new Configuration().configure("hibernate.cfg.xml").addAnnotatedClass(Instructor.class)
-				.addAnnotatedClass(InstructorDetail.class).addAnnotatedClass(Course.class)
-				.addAnnotatedClass(Review.class).buildSessionFactory();
-
+				.addAnnotatedClass(InstructorDetail.class).addAnnotatedClass(Course.class).addAnnotatedClass(Review.class).buildSessionFactory();
+		
 		// create session factory
 		Session session = factory.getCurrentSession();
 		try {
